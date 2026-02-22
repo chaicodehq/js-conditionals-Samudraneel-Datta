@@ -22,9 +22,22 @@
  *   - Empty string → "weak"
  *   - Non-string input → "weak"
  *
- * @param {string} password - The password to evaluate
+ * @param {string} password - The password to evaluatej
  * @returns {string} "weak", "medium", "strong", or "very strong"
  */
 export function checkPasswordStrength(password) {
-  // Your code here
+  let cnt=0
+  if(typeof password != "string" || password.length===0) return "weak"
+  
+  if(password.length >= 8) cnt++
+  if(/[A-Z]/.test(password)) cnt++
+  if(/[a-z]/.test(password)) cnt++
+  if(/[0-9]/.test(password)) cnt++
+  if(/[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)) cnt++
+
+  if(cnt>=0 && cnt <=1) return "weak"
+  if(cnt>=2 && cnt <=3) return "medium"
+  if(cnt>=3 && cnt <=4) return "strong"
+  if(cnt>4) return "very strong"
+
 }
